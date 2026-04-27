@@ -1,12 +1,12 @@
 # Contributing
 
-Thanks for your interest in the HCS conference site.
+Thanks for your interest in the SHCC 2026 landing.
 
 ## Quick start
 
 ```bash
-git clone <repo-url> hcs-conference-2026
-cd hcs-conference-2026
+git clone <repo-url> shcc-2026
+cd shcc-2026
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
@@ -15,11 +15,11 @@ No build step. Edit a file, refresh the browser.
 
 ## Conventions
 
-- **One component per file** when it makes sense; keep files under ~300 lines.
-- **Translations parity:** every key added to one locale in `translations.js`
+- **Translations parity:** every key added to one locale in `conf-translations.js`
   must be added to all four (`en`, `de`, `fr`, `it`).
-- **Tokens, not hex codes:** new colours go in `:root`, not inline.
+- **Tokens, not hex codes:** new colours go in `:root` (in `styles.css`), not inline.
 - **Imagery is placeholder by default** — never commit speculative photos.
+- **Weezevent URL** is centralised in `conf-app.jsx` (`WEEZEVENT_URL`).
 
 ## Pull requests
 

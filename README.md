@@ -1,19 +1,19 @@
-# HCS — Health Coaching Switzerland · Conference 2026
+# SHCC 2026 — Swiss Health Coaching Conference
 
-A high-fidelity, multilingual landing page for the Swiss Health Coaching Conference 2026.
-Built as a static, single-page site with React (via Babel standalone) — no build step required.
+Multilingual landing page for the **Swiss Health Coaching Conference 2026**, held in Neuchâtel on **24 June 2026**. Built as a static, single-page site with React (via Babel standalone) — no build step required.
 
-**Live page:** open `index.html` in any modern browser.
+🔗 **Registration (Weezevent):** <https://my.weezevent.com/conference-coaching-de-sante>
 
 ---
 
 ## Highlights
 
-- **Clinical, Swiss-modern aesthetic** — deep midnight navy with a single mint/teal accent
+- **Clinical Swiss-modern aesthetic** — deep midnight navy with a single mint/teal accent
 - **Four-language toggle** — EN · DE · FR · IT, all content fully translated
-- **Component-split React** — small, readable JSX files, no bundler
-- **Accessible** — semantic landmarks, focus-visible rings, ARIA on toggles
-- **Zero dependencies at runtime** beyond React + Babel CDN
+- **Weezevent CTAs** at the very top banner, in the sticky nav, in the hero, in a final block, and in the footer
+- **Three pricing tiers** — Early-bird CHF 90 · Regular CHF 120 · Online (TBA)
+- **Capacity** — limited to 110 participants
+- **No build step** — open `index.html` and it runs
 
 ---
 
@@ -25,7 +25,7 @@ Built as a static, single-page site with React (via Babel standalone) — no bui
 | Styling      | Hand-written CSS, design tokens via `:root` variables |
 | Behaviour    | React 18 + JSX, transpiled in-browser by Babel        |
 | Type         | Inter, JetBrains Mono, Fraunces (Google Fonts)        |
-| Build        | None — open the file and it runs                      |
+| Build        | None                                                  |
 
 ---
 
@@ -33,84 +33,71 @@ Built as a static, single-page site with React (via Babel standalone) — no bui
 
 ```
 .
-├── index.html            # Page shell, font + script loading
-├── styles.css            # Design tokens + all component styles
-├── translations.js       # i18n dictionary (en / de / fr / it)
-├── icons.jsx             # Inline SVG icon set
-├── nav.jsx               # Sticky top navigation + language pill
-├── hero.jsx              # Hero section with summary card
-├── sections.jsx          # About, Program, Speakers, Venue, Sponsors,
-│                         # Association, Resources, Registration, Footer
-└── app.jsx               # Top-level App component, language state
+├── index.html              # Page shell — fonts, stylesheets, scripts
+├── styles.css              # Design tokens + base components
+├── conference-styles.css   # Page-specific styles for this landing
+├── conf-translations.js    # i18n dictionary (en / de / fr / it)
+└── conf-app.jsx            # Top-level React app (all sections inline)
 ```
 
 ---
 
 ## Local development
 
-No tooling required. Either:
-
 ```bash
+git clone <repo-url> shcc-2026
+cd shcc-2026
+
 # 1. Open directly
 open index.html
 
-# 2. Or serve over localhost (recommended for some browsers)
+# 2. Or serve over localhost (recommended in some browsers)
 python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
 ### Editing content
 
-- **Copy & translations** live in [`translations.js`](./translations.js).
-  Each locale is a parallel object — edit the matching key in all four to keep parity.
-- **Visual tokens** (colours, type scale, radii, spacing) live at the top of
-  [`styles.css`](./styles.css) under `:root`.
-- **Layout / structure** is split by component file; each `.jsx` file exports its
-  component to `window.HCS*` so it can be referenced from `app.jsx`.
+- **Copy & translations** live in [`conf-translations.js`](./conf-translations.js).
+  Each locale (`en`, `de`, `fr`, `it`) is a parallel object — edit the matching key in all four to keep parity.
+- **Pricing tiers** live under `price.tiers` for each locale. Set `featured: true` on the tier you want highlighted.
+- **Visual tokens** (colours, type scale, radii, spacing) live at the top of [`styles.css`](./styles.css) under `:root`.
+- **Page sections** live in [`conf-app.jsx`](./conf-app.jsx) — top-to-bottom: banner, nav, hero, audience, program, speakers, venue, pricing, final CTA, footer.
 
-### Adding a section
+### Changing the registration URL
 
-1. Add the copy block (in all four languages) to `translations.js`.
-2. Add a new component to `sections.jsx` (or its own file) and attach it to `window`.
-3. Reference it in the render tree of `app.jsx`.
-4. Add a corresponding `<a href="#new-id">` to the `links` array in `nav.jsx`.
+The Weezevent URL is centralised in `conf-app.jsx`:
 
----
+```js
+const WEEZEVENT_URL = "https://my.weezevent.com/conference-coaching-de-sante";
+```
 
-## Design tokens
-
-Everything visual is controlled from `styles.css :root`. A few of the most
-relevant tokens:
-
-| Token              | Purpose                                  |
-|--------------------|------------------------------------------|
-| `--bg-0..3`        | Background surface scale (deepest → highest) |
-| `--fg-0..3`        | Text scale (primary → hairline)          |
-| `--accent`         | Mint/teal primary accent                 |
-| `--rule`, `--rule-soft` | Hairlines and dividers              |
-| `--font-sans`      | Inter — UI / body                        |
-| `--font-mono`      | JetBrains Mono — metadata, eyebrows      |
-| `--font-display`   | Inter (weight contrast does the work)    |
+Edit that constant; every CTA on the page will follow.
 
 ---
 
 ## Imagery
 
-All photographs and logos are intentionally rendered as labelled placeholders —
-clearly marked `portrait`, `venue photograph`, `logo · 01`, etc.
-Replace them with real assets in the corresponding component files when ready.
+All photographs are intentionally rendered as labelled placeholders (`venue photograph · aula exterior`, speaker portraits as striped circles). Replace them with real assets when ready.
 
 ---
 
 ## Browser support
 
-Tested in current Chrome, Safari, Firefox.
-Uses `oklch()` colour and modern CSS grid — no IE / legacy support.
+Tested in current Chrome, Safari, Firefox. Uses `oklch()` colours and modern CSS grid.
+
+---
+
+## Deployment
+
+This is a fully static site — drop the contents of the repo on any static host:
+
+- **GitHub Pages** — push to `main`, enable Pages from the repo Settings.
+- **Netlify / Vercel / Cloudflare Pages** — point at the repo, no build command, publish directory `/`.
 
 ---
 
 ## License
 
-© 2026 Health Coaching Switzerland.
 Source code: MIT — see [`LICENSE`](./LICENSE).
 Brand name, logo and editorial copy are the property of Health Coaching Switzerland.
