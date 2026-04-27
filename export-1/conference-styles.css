@@ -1,0 +1,373 @@
+/* ============================================================
+   HCS Conference 2026 — Landing page (focused)
+   Builds on styles.css; adds page-specific blocks
+   ============================================================ */
+
+.banner {
+  background: var(--accent);
+  color: oklch(0.18 0.03 235);
+  padding: 0.6rem var(--gutter);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  z-index: 60;
+}
+.banner a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-left: 0.5rem;
+}
+.banner a:hover { text-decoration: none; }
+
+/* Hero — conference focused */
+.cf-hero {
+  position: relative;
+  padding: clamp(4rem, 2rem + 6vw, 7rem) 0 clamp(3rem, 2rem + 4vw, 5rem);
+  overflow: hidden;
+}
+.cf-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(700px 320px at 80% 30%, oklch(0.55 0.10 180 / 0.18), transparent 60%),
+    radial-gradient(500px 300px at 10% 80%, oklch(0.40 0.08 220 / 0.20), transparent 60%);
+  pointer-events: none;
+}
+.cf-hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: grid;
+  gap: 1.6rem;
+  justify-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.cf-hero h1 {
+  font-size: clamp(3rem, 2rem + 5vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+}
+.cf-hero h1 .accent { font-style: normal; }
+.cf-hero .lede {
+  font-size: var(--step-2);
+  color: var(--fg-1);
+  font-weight: 300;
+  max-width: 32ch;
+}
+.cf-meta {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2.2rem 3rem;
+  margin-top: 0.6rem;
+  padding: 1.4rem 2rem;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  width: 100%;
+  max-width: 720px;
+}
+.cf-meta .item { display: inline-flex; align-items: center; gap: 0.7rem; }
+.cf-meta .item svg { color: var(--accent); flex: none; }
+.cf-meta .lab {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.cf-meta .val { color: var(--fg-0); font-weight: 500; font-size: 0.95rem; }
+
+.cf-cta-row {
+  display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;
+  margin-top: 0.6rem;
+}
+
+/* Section header */
+.cf-sec {
+  padding-block: clamp(3.5rem, 2rem + 4vw, 5.5rem);
+  position: relative;
+}
+.cf-sec h2 {
+  font-size: var(--step-4);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.6rem;
+  text-wrap: balance;
+}
+.cf-sec .sec-lede {
+  font-size: var(--step-1);
+  color: var(--fg-1);
+  max-width: 56ch;
+  margin: 0 auto 2.5rem;
+  text-wrap: pretty;
+  line-height: 1.55;
+}
+.cf-sec.center { text-align: center; }
+.cf-sec.center .eyebrow { display: block; margin-bottom: 0.8rem; }
+
+/* Audience cards */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--rule-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+.audience {
+  background: var(--bg-1);
+  padding: 2rem 1.6rem;
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+  text-align: left;
+  transition: background 220ms ease;
+}
+.audience:hover { background: var(--bg-2); }
+.audience .ico {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--accent-deep);
+  border-radius: 8px;
+  color: var(--accent);
+  background: oklch(0.18 0.03 235 / 0.6);
+}
+.audience h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.audience p {
+  margin: 0;
+  color: var(--fg-1);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* Program list */
+.prog-frame {
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  background: oklch(0.18 0.025 235 / 0.5);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.prog-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.3rem 1.6rem;
+  border-bottom: 1px solid var(--rule-soft);
+  text-align: left;
+}
+.prog-row:last-child { border-bottom: 0; }
+.prog-row .time {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+.prog-row .ttl { font-size: 0.98rem; font-weight: 500; }
+.prog-row .who { font-size: 0.84rem; color: var(--fg-2); margin-top: 0.2rem; }
+.prog-row .kind {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+.prog-row .kind.keynote { color: var(--accent); border-color: var(--accent-deep); }
+.prog-row .kind.break { color: var(--fg-3); }
+
+@media (max-width: 640px) {
+  .prog-row { grid-template-columns: 70px 1fr; }
+  .prog-row .kind { grid-column: 1 / -1; justify-self: start; margin-top: 0.4rem; }
+}
+
+/* Speakers strip */
+.spk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--rule-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1rem;
+  text-align: left;
+}
+.spk {
+  background: var(--bg-1);
+  padding: 1.4rem 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+}
+.spk .pt {
+  width: 88px; aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(135deg,
+      oklch(0.30 0.02 230) 0 6px,
+      oklch(0.26 0.02 230) 6px 12px);
+  border: 1px solid var(--rule-soft);
+}
+.spk .nm { font-size: 0.96rem; font-weight: 500; letter-spacing: -0.01em; }
+.spk .rl { font-size: 0.82rem; color: var(--fg-2); line-height: 1.45; }
+.spk .af {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* Pricing */
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.price-card {
+  border: 1px solid var(--rule-soft);
+  background: oklch(0.20 0.025 235 / 0.5);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  display: grid;
+  gap: 0.6rem;
+  position: relative;
+}
+.price-card.featured {
+  border-color: var(--accent-deep);
+  background:
+    radial-gradient(400px 200px at 100% 0%, var(--accent-glow), transparent 60%),
+    oklch(0.20 0.025 235 / 0.6);
+}
+.price-card .label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.price-card.featured .label { color: var(--accent); }
+.price-card .amt {
+  display: flex; align-items: baseline; gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+.price-card .amt .num {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.price-card .amt .cur {
+  font-family: var(--font-mono);
+  color: var(--fg-2);
+  font-size: 0.78rem; letter-spacing: 0.1em;
+}
+.price-card .desc { color: var(--fg-2); font-size: 0.85rem; }
+
+/* Venue card */
+.venue-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+@media (min-width: 800px) {
+  .venue-card { grid-template-columns: 1.1fr 1fr; }
+}
+.venue-card .img {
+  min-height: 260px;
+  background:
+    repeating-linear-gradient(45deg,
+      oklch(0.24 0.03 230) 0 18px,
+      oklch(0.21 0.03 230) 18px 36px);
+  display: grid; place-items: center;
+}
+.venue-card .img .ph {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  color: var(--fg-1);
+  padding: 0.45rem 0.8rem;
+  background: oklch(0.18 0.025 235 / 0.7);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.venue-card .body { padding: 2rem; display: grid; gap: 1rem; }
+.venue-card .body h3 {
+  font-size: var(--step-3); font-weight: 500;
+  letter-spacing: -0.02em; margin: 0;
+}
+.venue-card .body p { color: var(--fg-1); margin: 0; line-height: 1.6; }
+.venue-card .meta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.venue-card .meta .lab {
+  font-family: var(--font-mono);
+  font-size: 0.64rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--fg-3);
+  margin-bottom: 0.25rem;
+}
+.venue-card .meta .val { color: var(--fg-0); font-size: 0.88rem; }
+
+/* Final CTA block */
+.final-cta {
+  border: 1px solid var(--accent-deep);
+  background:
+    radial-gradient(500px 240px at 50% 0%, var(--accent-glow), transparent 60%),
+    oklch(0.20 0.025 235 / 0.5);
+  border-radius: var(--radius-lg);
+  padding: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+  text-align: center;
+  display: grid;
+  gap: 1.4rem;
+  justify-items: center;
+}
+.final-cta h3 {
+  font-size: var(--step-3);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 22ch;
+}
+.final-cta p {
+  color: var(--fg-1); margin: 0; max-width: 50ch;
+  line-height: 1.55;
+}
+.final-cta .small {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-top: 0.5rem;
+}
